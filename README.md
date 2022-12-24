@@ -1,6 +1,6 @@
 # JuegoPokemon
 
-###### PROGRAMA REALIZADO COMO UN PROYECTO DE LA PRIMERA EVALUACIÓN DEL GRADO SUPERIOR DE DESARROLLO DE APLICACIONES MULTIPLATAFORMA.
+###### PROGRAMA REALIZADO COMO UN PROYECTO DE LA PRIMERA EVALUACIÓN DEL PRIMER AÑO DEL GRADO SUPERIOR DE DESARROLLO DE APLICACIONES MULTIPLATAFORMA.
 
 Sencilla emulación de un combate Pokémon en la que el usuario podrá elegir entre tres Pokémon (Bulbasaur, Squirtle o Charmander), y, según el que escoja, se enfrentará al de tipo elemental contrario.
 
