@@ -1,4 +1,4 @@
-package com.mycompany.pokemon;
+package com.mycompany.pokemon.pojos;
 
 public enum TipoAtaque {
     NORMAL("Normal"),
@@ -15,7 +15,7 @@ public enum TipoAtaque {
         this.nombre = nombre;
     }
 
-    String getNombre() {
+    public String getNombre() {
         return this.nombre;
     }
 }

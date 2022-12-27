@@ -1,11 +1,11 @@
-package com.mycompany.pokemon;
+package com.mycompany.pokemon.pojos;
 
 public class Ataque {
 
     // ATRIBUTOS DE LOS ATAQUES:
-    String nombre; // Nombre del ataque.
-    int danio; // Daño que causa el ataque.
-    TipoAtaque tipo; // Tipo de elemento del ataque.
+    private String nombre; // Nombre del ataque.
+    private int danio; // Daño que causa el ataque.
+    private TipoAtaque tipo; // Tipo de elemento del ataque.
 
     // CONSTRUCTOR DE LOS ATAQUES:
     public Ataque(String nombre, int danio, TipoAtaque tipo) {

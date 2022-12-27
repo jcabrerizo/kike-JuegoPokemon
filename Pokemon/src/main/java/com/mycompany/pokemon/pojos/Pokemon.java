@@ -1,18 +1,16 @@
-package com.mycompany.pokemon;
+package com.mycompany.pokemon.pojos;
 
-
-import com.mycompany.pokemon.Ataque;
 
 public class Pokemon {
 
     // ATRIBUTOS DE LOS POKÉMON:
-    String nombre; // Nombre del Pokémon.
-    String tipo; // Tipo de elemento del Pokémon.
-    Ataque ataque1; // Ataque 1.
-    Ataque ataque2; // Ataque 2.
-    Ataque ataque3; // Ataque 3.
-    int vida; // Puntos de salud del Pokémon.
-    int velocidad; // Velocidad del Pokémon.
+    private String nombre; // Nombre del Pokémon.
+    private String tipo; // Tipo de elemento del Pokémon.
+    private Ataque ataque1; // Ataque 1.
+    private Ataque ataque2; // Ataque 2.
+    private Ataque ataque3; // Ataque 3.
+    private int vida; // Puntos de salud del Pokémon.
+    private int velocidad; // Velocidad del Pokémon.
 
     // CONSTRUCTOR DE LOS POKÉMON:
     public Pokemon(String nombre, String tipo, Ataque ataque1, Ataque ataque2, Ataque ataque3, int vida, int velocidad) {

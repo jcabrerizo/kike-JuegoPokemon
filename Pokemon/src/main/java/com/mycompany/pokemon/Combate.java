@@ -1,5 +1,8 @@
 package com.mycompany.pokemon;
 
+import com.mycompany.pokemon.pojos.Ataque;
+import com.mycompany.pokemon.pojos.Pokemon;
+
 import java.util.*;
 
 public class Combate {
@@ -45,7 +48,7 @@ public class Combate {
 
         do {
 
-            if (turnoJugador == true && miPokemon.vida > 0) {
+            if (turnoJugador == true && miPokemon.getVida() > 0) {
 
                 // TURNO DEL JUGADOR:
                 do {
@@ -73,31 +76,31 @@ public class Combate {
 
                     if (opcion == 1) {
 
-                        danioBase = miPokemon.getAtaque1().danio; // Guarda el daño inicial del ataque.
+                        danioBase = miPokemon.getAtaque1().getDanio(); // Guarda el daño inicial del ataque.
                         calcularDanio(miPokemon.getAtaque1(), rivalPokemon); // Llamada al método para calcular el daño del ataque 1.
 
-                        rivalPokemon.vida = rivalPokemon.vida - miPokemon.getAtaque1().danio; // Se calcula el daño recibido en la vida del rival.
-                        System.out.println("\n" + miPokemon.getNombre() + " usó " + miPokemon.getAtaque1().getNombre() + " causando " + miPokemon.getAtaque1().danio + " puntos de daño.");
+                        rivalPokemon.setVida(rivalPokemon.getVida() - miPokemon.getAtaque1().getDanio()); // Se calcula el daño recibido en la vida del rival.
+                        System.out.println("\n" + miPokemon.getNombre() + " usó " + miPokemon.getAtaque1().getNombre() + " causando " + miPokemon.getAtaque1().getDanio() + " puntos de daño.");
 
                         miPokemon.getAtaque1().setDanio(danioBase); // Recupera el daño inicial del ataque.
 
                     } else if (opcion == 2) {
 
-                        danioBase = miPokemon.getAtaque2().danio; // Guarda el daño inicial del ataque.
+                        danioBase = miPokemon.getAtaque2().getDanio(); // Guarda el daño inicial del ataque.
                         calcularDanio(miPokemon.getAtaque2(), rivalPokemon); // Se llama al método para calcular el daño del ataque 2.
 
-                        rivalPokemon.vida = rivalPokemon.vida - miPokemon.getAtaque2().danio; // Se calcula el daño recibido en la vida del rival.
-                        System.out.println("\n" + miPokemon.getNombre() + " usó " + miPokemon.getAtaque2().getNombre() + " causando " + miPokemon.getAtaque2().danio + " puntos de daño.");
+                        rivalPokemon.setVida(rivalPokemon.getVida() - miPokemon.getAtaque2().getDanio()); // Se calcula el daño recibido en la vida del rival.
+                        System.out.println("\n" + miPokemon.getNombre() + " usó " + miPokemon.getAtaque2().getNombre() + " causando " + miPokemon.getAtaque2().getDanio() + " puntos de daño.");
 
                         miPokemon.getAtaque2().setDanio(danioBase); // Recupera el daño inicial del ataque.
 
                     } else if (opcion == 3) {
 
-                        danioBase = miPokemon.getAtaque3().danio; // Guarda el daño inicial del ataque.
+                        danioBase = miPokemon.getAtaque3().getDanio(); // Guarda el daño inicial del ataque.
                         calcularDanio(miPokemon.getAtaque3(), rivalPokemon); // Se llama al método para calcular el daño del ataque 3.
 
-                        rivalPokemon.vida = rivalPokemon.vida - miPokemon.getAtaque3().danio; // Se calcula el daño recibido en la vida del rival.
-                        System.out.println("\n" + miPokemon.getNombre() + " usó " + miPokemon.getAtaque3().getNombre() + " causando " + miPokemon.getAtaque3().danio + " puntos de daño.");
+                        rivalPokemon.setVida(rivalPokemon.getVida() - miPokemon.getAtaque3().getDanio()); // Se calcula el daño recibido en la vida del rival.
+                        System.out.println("\n" + miPokemon.getNombre() + " usó " + miPokemon.getAtaque3().getNombre() + " causando " + miPokemon.getAtaque3().getDanio() + " puntos de daño.");
 
                         miPokemon.getAtaque3().setDanio(danioBase); // Recupera el daño inicial del ataque.
 
@@ -196,9 +199,9 @@ public class Combate {
                             do {
 
                                 if (usar.equalsIgnoreCase("S")) {
-                                    miPokemon.setVida(miPokemon.vida + 50);
-                                    if (miPokemon.vida > 100) {
-                                        miPokemon.vida = 100; // Si al curarse la vida pasa de 100, se iguala a 100.
+                                    miPokemon.setVida(miPokemon.getVida() + 50);
+                                    if (miPokemon.getVida() > 100) {
+                                        miPokemon.setVida(100); // Si al curarse la vida pasa de 100, se iguala a 100.
                                     }
 
                                     System.out.println(" ____ \n"
@@ -241,7 +244,7 @@ public class Combate {
                                 + "| ( { o_}  VS  `(`))/  |\n"
                                 + "|  u uu	         u u   |\n"
                                 + " ----------------------\n"
-                                + "  PS: " + miPokemon.vida + "       PS: " + rivalPokemon.vida + "\n"
+                                + "  PS: " + miPokemon.getVida() + "       PS: " + rivalPokemon.getVida() + "\n"
                                 + " ----------------------");
 
                     } else if (miPokemon.getNombre().equals("SQUIRTLE") && opcion != 4 && opcion != 5) { // Se valora también que al escoger las opciones 4 y 5 no se muestre el panel de combate.
@@ -252,7 +255,7 @@ public class Combate {
                                 + "| @(#|\\)\\  VS  {_o } ) |\n"
                                 + "|   u u          uu u  |\n"
                                 + " ----------------------\n"
-                                + "  PS: " + miPokemon.vida + "       PS: " + rivalPokemon.vida + "\n"
+                                + "  PS: " + miPokemon.getVida() + "       PS: " + rivalPokemon.getVida() + "\n"
                                 + " ----------------------");
 
                     } else if (miPokemon.getNombre().equals("CHARMANDER") && opcion != 4 && opcion != 5) { // Se valora también que al escoger las opciones 4 y 5 no se muestre el panel de combate.
@@ -263,7 +266,7 @@ public class Combate {
                                 + "|  \\((´)´  VS  /(/|#)@ |\n"
                                 + "|   u u          u u   |\n"
                                 + " ----------------------\n"
-                                + "  PS: " + miPokemon.vida + "       PS: " + rivalPokemon.vida + "\n"
+                                + "  PS: " + miPokemon.getVida() + "       PS: " + rivalPokemon.getVida() + "\n"
                                 + " ----------------------");
                     }
 
@@ -292,7 +295,7 @@ public class Combate {
 
                 } while (retroceder == true || objetoUsado == true);
 
-            } else if (turnoJugador == false && rivalPokemon.vida > 0) {
+            } else if (turnoJugador == false && rivalPokemon.getVida() > 0) {
 
                 // TURNO DE LA MÁQUINA:
                 do {
@@ -305,31 +308,31 @@ public class Combate {
 
                     if (opcionRival == 1) {
 
-                        danioBase = rivalPokemon.getAtaque1().danio; // Guarda el daño inicial del ataque.
+                        danioBase = rivalPokemon.getAtaque1().getDanio(); // Guarda el daño inicial del ataque.
 
                         calcularDanio(rivalPokemon.getAtaque1(), miPokemon); // Se llama al método para calcular el daño del ataque 1.
-                        miPokemon.vida = miPokemon.vida - rivalPokemon.getAtaque1().danio; // Se calcula el daño recibido en la vida del jugador.
-                        System.out.println("\n" + rivalPokemon.getNombre() + " enemigo usó " + rivalPokemon.getAtaque1().getNombre() + " causando " + rivalPokemon.getAtaque1().danio + " puntos de daño.");
+                        miPokemon.setVida(miPokemon.getVida() - rivalPokemon.getAtaque1().getDanio()); // Se calcula el daño recibido en la vida del jugador.
+                        System.out.println("\n" + rivalPokemon.getNombre() + " enemigo usó " + rivalPokemon.getAtaque1().getNombre() + " causando " + rivalPokemon.getAtaque1().getDanio() + " puntos de daño.");
 
                         rivalPokemon.getAtaque1().setDanio(danioBase); // Recupera el daño inicial del ataque.
 
                     } else if (opcionRival == 2) {
 
-                        danioBase = rivalPokemon.getAtaque2().danio; // Guarda el daño inicial del ataque.
+                        danioBase = rivalPokemon.getAtaque2().getDanio(); // Guarda el daño inicial del ataque.
 
                         calcularDanio(rivalPokemon.getAtaque2(), miPokemon); // Se llama al método para calcular el daño del ataque 2.
-                        miPokemon.vida = miPokemon.vida - rivalPokemon.getAtaque2().danio; // Se calcula el daño recibido en la vida del jugador.
-                        System.out.println("\n" + rivalPokemon.getNombre() + " enemigo usó " + rivalPokemon.getAtaque2().getNombre() + " causando " + rivalPokemon.getAtaque2().danio + " puntos de daño.");
+                        miPokemon.setVida(miPokemon.getVida() - rivalPokemon.getAtaque2().getDanio()); // Se calcula el daño recibido en la vida del jugador.
+                        System.out.println("\n" + rivalPokemon.getNombre() + " enemigo usó " + rivalPokemon.getAtaque2().getNombre() + " causando " + rivalPokemon.getAtaque2().getDanio() + " puntos de daño.");
 
                         rivalPokemon.getAtaque2().setDanio(danioBase); // Recupera el daño inicial del ataque.
 
                     } else if (opcionRival == 3) {
 
-                        danioBase = rivalPokemon.getAtaque2().danio; // Guarda el daño inicial del ataque.
+                        danioBase = rivalPokemon.getAtaque2().getDanio(); // Guarda el daño inicial del ataque.
 
                         calcularDanio(rivalPokemon.getAtaque3(), miPokemon); // Se llama al método para calcular el daño del ataque 3.
-                        miPokemon.vida = miPokemon.vida - rivalPokemon.getAtaque3().danio; // Se calcula el daño recibido en la vida del jugador.
-                        System.out.println("\n" + rivalPokemon.getNombre() + " enemigo usó " + rivalPokemon.getAtaque3().getNombre() + " causando " + rivalPokemon.getAtaque3().danio + " puntos de daño.");
+                        miPokemon.setVida( miPokemon.getVida() - rivalPokemon.getAtaque3().getDanio()); // Se calcula el daño recibido en la vida del jugador.
+                        System.out.println("\n" + rivalPokemon.getNombre() + " enemigo usó " + rivalPokemon.getAtaque3().getNombre() + " causando " + rivalPokemon.getAtaque3().getDanio() + " puntos de daño.");
 
                         rivalPokemon.getAtaque3().setDanio(danioBase); // Recupera el daño inicial del ataque.
                     }
@@ -342,7 +345,7 @@ public class Combate {
                                 + "| ( { o_}  VS  `(`))/  |\n"
                                 + "|  u uu	         u u   |\n"
                                 + " ----------------------\n"
-                                + "  PS: " + miPokemon.vida + "       PS: " + rivalPokemon.vida + "\n"
+                                + "  PS: " + miPokemon.getVida() + "       PS: " + rivalPokemon.getVida() + "\n"
                                 + " ----------------------");
 
                     } else if (miPokemon.getNombre().equals("SQUIRTLE")) {
@@ -353,7 +356,7 @@ public class Combate {
                                 + "| @(#|\\)\\  VS  {_o } ) |\n"
                                 + "|   u u          uu u  |\n"
                                 + " ----------------------\n"
-                                + "  PS: " + miPokemon.vida + "       PS: " + rivalPokemon.vida + "\n"
+                                + "  PS: " + miPokemon.getVida() + "       PS: " + rivalPokemon.getVida() + "\n"
                                 + " ----------------------");
 
                     } else if (miPokemon.getNombre().equals("CHARMANDER")) {
@@ -364,7 +367,7 @@ public class Combate {
                                 + "|  \\((´)´  VS  /(/|#)@ |\n"
                                 + "|   u u          u u   |\n"
                                 + " ----------------------\n"
-                                + "  PS: " + miPokemon.vida + "       PS: " + rivalPokemon.vida + "\n"
+                                + "  PS: " + miPokemon.getVida() + "       PS: " + rivalPokemon.getVida() + "\n"
                                 + " ----------------------");
                     }
 
@@ -391,10 +394,10 @@ public class Combate {
         } while (miPokemon.getVida() > 0 && rivalPokemon.getVida() > 0); // El combate continuará hasta que uno de los dos Pokémon llegue a 0 de vida.
 
         // MENSAJES DE VICTORIA Y DERROTA:
-        if (rivalPokemon.vida <= 0) {
+        if (rivalPokemon.getVida() <= 0) {
             System.out.println("\n¡VICTORIA!");
             System.out.println(rivalPokemon.getNombre() + " se ha debilitado. " + "¡" + miPokemon.getNombre() + " es el ganador!");
-        } else if (miPokemon.vida <= 0) {
+        } else if (miPokemon.getVida() <= 0) {
             System.out.println("\n¡DERROTA!");
             System.out.println(miPokemon.getNombre() + " se ha debilitado. " + "¡" + rivalPokemon.getNombre() + " es el ganador!");
         }
@@ -406,66 +409,66 @@ public class Combate {
         // MODIFICADORES TIPO AGUA:
         if (ataque.getNombreTipo().equals("Agua") && (rival.getTipo().equals("Agua") || rival.getTipo().equals("Planta"))) {
             // AGUA VS AGUA O PLANTA = /2
-            ataque.danio /= 2;
+            ataque.setDanio(ataque.getDanio()/2);
             System.out.println("\nNo es muy eficaz...");
         } else if (ataque.getNombreTipo().equals("Agua") && (rival.getTipo().equals("Fuego"))) {
             // AGUA VS FUEGO = *2
-            ataque.danio *= 2;
+            ataque.setDanio(ataque.getDanio()*2);
             System.out.println("\n¡Es muy eficaz!");
         }
 
         // MODIFICADORES TIPO PLANTA:
         if (ataque.getNombreTipo().equals("Planta") && (rival.getTipo().equals("Planta") || rival.getTipo().equals("Fuego"))) {
             // PLANTA VS PLANTA O FUEGO = /2
-            ataque.danio /= 2;
+            ataque.setDanio(ataque.getDanio()/2);
             System.out.println("\nNo es muy eficaz...");
         } else if (ataque.getNombreTipo().equals("Planta") && (rival.getTipo().equals("Agua"))) {
             // PLANTA VS AGUA = *2
-            ataque.danio *= 2;
+            ataque.setDanio(ataque.getDanio()*2);
             System.out.println("\n¡Es muy eficaz!");
         }
 
         // MODIFICADORES TIPO FUEGO:
         if (ataque.getNombreTipo().equals("Fuego") && (rival.getTipo().equals("Fuego") || rival.getTipo().equals("Agua"))) {
             // FUEGO VS FUEGO O AGUA = /2
-            ataque.danio /= 2;
+            ataque.setDanio(ataque.getDanio()/2);
             System.out.println("\nNo es muy eficaz...");
         } else if (ataque.getNombreTipo().equals("Fuego") && (rival.getTipo().equals("Planta"))) {
             // FUEGO VS PLANTA = *2
-            ataque.danio *= 2;
+            ataque.setDanio(ataque.getDanio()*2);
             System.out.println("\n¡Es muy eficaz!");
         }
 
         // MODIFICADORES TIPO TIERRA:
         if (ataque.getNombreTipo().equals("Tierra") && (rival.getTipo().equals("Planta"))) {
             // TIERRA VS PLANTA = /2
-            ataque.danio /= 2;
+            ataque.setDanio(ataque.getDanio()/2);
             System.out.println("\nNo es muy eficaz...");
         } else if (ataque.getNombreTipo().equals("Tierra") && (rival.getTipo().equals("Fuego"))) {
             // TIERRA VS FUEGO = *2
-            ataque.danio *= 2;
+            ataque.setDanio(ataque.getDanio()*2);
             System.out.println("\n¡Es muy eficaz!");
         }
 
         // MODIFICADORES TIPO HIELO:
         if (ataque.getNombreTipo().equals("Hielo") && (rival.getTipo().equals("Fuego") || rival.getTipo().equals("Agua"))) {
             // HIELO VS FUEGO O AGUA = /2
-            ataque.danio /= 2;
+            ataque.setDanio(ataque.getDanio()/2);
             System.out.println("\nNo es muy eficaz...");
         } else if (ataque.getNombreTipo().equals("Hielo") && (rival.getTipo().equals("Planta"))) {
             // HIELO VS PLANTA = *2
-            ataque.danio *= 2;
+            ataque.setDanio(ataque.getDanio()*2);
             System.out.println("\n¡Es muy eficaz!");
         }
 
         // MODIFICADORES TIPO ELÉCTRICO:
         if (ataque.getNombreTipo().equals("Eléctrico") && (rival.getTipo().equals("Planta"))) {
             // ELÉCTRICO VS PLANTA = /2
-            ataque.danio /= 2;
+            ataque.setDanio(ataque.getDanio()/2);
             System.out.println("\nNo es muy eficaz...");
         } else if (ataque.getNombreTipo().equals("Eléctrico") && (rival.getTipo().equals("Agua"))) {
             // ELÉCTRICO VS AGUA = *2
-            ataque.danio *= 2;
+            ataque.setDanio(ataque.getDanio()*2);
             System.out.println("\n¡Es muy eficaz!");
         }
 
@@ -480,19 +483,19 @@ public class Combate {
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
             if (numAleatorio < probFallo) {
                 // Si el número aleatorio es menor que la probabilidad, el ataque falla.
-                ataque.danio = 0;
+                ataque.setDanio(0);
                 System.out.println("\nEl ataque ha fallado.");
             }
             // PROBABILIDAD CRÍTICA:
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
-            if (numAleatorio < probCritico && ataque.danio > 0) { // Se valora también que "ataque.danio" sea mayor que cero para evitar que un golpe se pueda fallar y ser crítico.
+            if (numAleatorio < probCritico && ataque.getDanio() > 0) { // Se valora también que "ataque.getDanio()" sea mayor que cero para evitar que un golpe se pueda fallar y ser crítico.
                 // Si el número aleatorio es menor que la probabilidad, el ataque hace el doble de daño.
-                ataque.danio *= 2;
+                ataque.setDanio(ataque.getDanio()*2);
                 System.out.println("\n¡Golpe crítico!");
             }
             // PROBABILIDAD DE RETROCESO:
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
-            if (numAleatorio < probRetroceso && ataque.danio > 0) { // Se valora también que "ataque.danio" sea mayor que cero para evitar que un golpe se pueda fallar y hacer retroceder.
+            if (numAleatorio < probRetroceso && ataque.getDanio() > 0) { // Se valora también que "ataque.getDanio()" sea mayor que cero para evitar que un golpe se pueda fallar y hacer retroceder.
                 // Si el número aleatorio es menor que la probabilidad, el ataque hace retroceder.
                 retroceder = true;
                 System.out.println("\n¡El ataque hizo retroceder!");
@@ -509,19 +512,19 @@ public class Combate {
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
             if (numAleatorio < probFallo) {
                 // Si el número aleatorio es menor que la probabilidad, el ataque falla.
-                ataque.danio = 0;
+                ataque.setDanio(0);
                 System.out.println("\nEl ataque ha fallado.");
             }
             // PROBABILIDAD CRÍTICA:
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
-            if (numAleatorio < probCritico && ataque.danio > 0) { // Se valora también que "ataque.danio" sea mayor que cero para evitar que un golpe se pueda fallar y ser crítico.
+            if (numAleatorio < probCritico && ataque.getDanio() > 0) { // Se valora también que "ataque.getDanio()" sea mayor que cero para evitar que un golpe se pueda fallar y ser crítico.
                 // Si el número aleatorio es menor que la probabilidad, el ataque hace el doble de daño.
-                ataque.danio *= 2;
+                ataque.setDanio(ataque.getDanio()*2);
                 System.out.println("\n¡Golpe crítico!");
             }
             // PROBABILIDAD DE RETROCESO:
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
-            if (numAleatorio < probRetroceso && ataque.danio > 0) { // Se valora también que "ataque.danio" sea mayor que cero para evitar que un golpe se pueda fallar y hacer retroceder.
+            if (numAleatorio < probRetroceso && ataque.getDanio() > 0) { // Se valora también que "ataque.getDanio()" sea mayor que cero para evitar que un golpe se pueda fallar y hacer retroceder.
                 // Si el número aleatorio es menor que la probabilidad, el ataque hace retroceder.
                 retroceder = true;
                 System.out.println("\n¡El ataque hizo retroceder!");
@@ -538,19 +541,19 @@ public class Combate {
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
             if (numAleatorio < probFallo) {
                 // Si el número aleatorio es menor que la probabilidad, el ataque falla.
-                ataque.danio = 0;
+                ataque.setDanio(0);
                 System.out.println("\n¡El ataque ha fallado!");
             }
             // PROBABILIDAD CRÍTICA:
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
-            if (numAleatorio < probCritico && ataque.danio > 0) { // Se valora también que "ataque.danio" sea mayor que cero para evitar que un golpe se pueda fallar y ser crítico.
+            if (numAleatorio < probCritico && ataque.getDanio() > 0) { // Se valora también que "ataque.getDanio()" sea mayor que cero para evitar que un golpe se pueda fallar y ser crítico.
                 // Si el número aleatorio es menor que la probabilidad, el ataque hace el doble de daño.
-                ataque.danio *= 2;
+                ataque.setDanio(ataque.getDanio()*2);
                 System.out.println("\n¡Golpe crítico!");
             }
             // PROBABILIDAD DE RETROCESO:
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
-            if (numAleatorio < probRetroceso && ataque.danio > 0) { // Se valora también que "ataque.danio" sea mayor que cero para evitar que un golpe se pueda fallar y hacer retroceder.
+            if (numAleatorio < probRetroceso && ataque.getDanio() > 0) { // Se valora también que "ataque.getDanio()" sea mayor que cero para evitar que un golpe se pueda fallar y hacer retroceder.
                 // Si el número aleatorio es menor que la probabilidad, el ataque hace retroceder.
                 retroceder = true;
                 System.out.println("\n¡El ataque hizo retroceder!");
@@ -567,19 +570,19 @@ public class Combate {
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
             if (numAleatorio < probFallo) {
                 // Si el número aleatorio es menor que la probabilidad, el ataque falla.
-                ataque.danio = 0;
+                ataque.setDanio(0);
                 System.out.println("\nEl ataque ha fallado.");
             }
             // PROBABILIDAD CRÍTICA:
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
-            if (numAleatorio < probCritico && ataque.danio > 0) { // Se valora también que "ataque.danio" sea mayor que cero para evitar que un golpe se pueda fallar y ser crítico.
+            if (numAleatorio < probCritico && ataque.getDanio() > 0) { // Se valora también que "ataque.getDanio()" sea mayor que cero para evitar que un golpe se pueda fallar y ser crítico.
                 // Si el número aleatorio es menor que la probabilidad, el ataque hace el doble de daño.
-                ataque.danio *= 2;
+                ataque.setDanio(ataque.getDanio()*2);
                 System.out.println("\n¡Golpe crítico!");
             }
             // PROBABILIDAD DE RETROCESO:
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
-            if (numAleatorio < probRetroceso && ataque.danio > 0) { // Se valora también que "ataque.danio" sea mayor que cero para evitar que un golpe se pueda fallar y hacer retroceder.
+            if (numAleatorio < probRetroceso && ataque.getDanio() > 0) { // Se valora también que "ataque.getDanio()" sea mayor que cero para evitar que un golpe se pueda fallar y hacer retroceder.
                 // Si el número aleatorio es menor que la probabilidad, el ataque hace retroceder.
                 retroceder = true;
                 System.out.println("\n¡El ataque hizo retroceder!");
@@ -596,19 +599,19 @@ public class Combate {
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
             if (numAleatorio < probFallo) {
                 // Si el número aleatorio es menor que la probabilidad, el ataque falla.
-                ataque.danio = 0;
+                ataque.setDanio(0);
                 System.out.println("\nEl ataque ha fallado.");
             }
             // PROBABILIDAD CRÍTICA:
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
-            if (numAleatorio < probCritico && ataque.danio > 0) { // Se valora también que "ataque.danio" sea mayor que cero para evitar que un golpe se pueda fallar y ser crítico.
+            if (numAleatorio < probCritico && ataque.getDanio() > 0) { // Se valora también que "ataque.getDanio()" sea mayor que cero para evitar que un golpe se pueda fallar y ser crítico.
                 // Si el número aleatorio es menor que la probabilidad, el ataque hace el doble de daño.
-                ataque.danio *= 2;
+                ataque.setDanio(ataque.getDanio()*2);
                 System.out.println("\n¡Golpe crítico!");
             }
             // PROBABILIDAD DE RETROCESO:
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
-            if (numAleatorio < probRetroceso && ataque.danio > 0) { // Se valora también que "ataque.danio" sea mayor que cero para evitar que un golpe se pueda fallar y hacer retroceder.
+            if (numAleatorio < probRetroceso && ataque.getDanio() > 0) { // Se valora también que "ataque.getDanio()" sea mayor que cero para evitar que un golpe se pueda fallar y hacer retroceder.
                 // Si el número aleatorio es menor que la probabilidad, el ataque hace retroceder.
                 retroceder = true;
                 System.out.println("\n¡El ataque hizo retroceder!");
@@ -625,19 +628,19 @@ public class Combate {
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
             if (numAleatorio < probFallo) {
                 // Si el número aleatorio es menor que la probabilidad, el ataque falla.
-                ataque.danio = 0;
+                ataque.setDanio(0);
                 System.out.println("\nEl ataque ha fallado.");
             }
             // PROBABILIDAD CRÍTICA:
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
-            if (numAleatorio < probCritico && ataque.danio > 0) { // Se valora también que "ataque.danio" sea mayor que cero para evitar que un golpe se pueda fallar y ser crítico.
+            if (numAleatorio < probCritico && ataque.getDanio() > 0) { // Se valora también que "ataque.getDanio()" sea mayor que cero para evitar que un golpe se pueda fallar y ser crítico.
                 // Si el número aleatorio es menor que la probabilidad, el ataque hace el doble de daño.
-                ataque.danio *= 2;
+                ataque.setDanio(ataque.getDanio()*2);
                 System.out.println("\n¡Golpe crítico!");
             }
             // PROBABILIDAD DE RETROCESO:
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
-            if (numAleatorio < probRetroceso && ataque.danio > 0) { // Se valora también que "ataque.danio" sea mayor que cero para evitar que un golpe se pueda fallar y hacer retroceder.
+            if (numAleatorio < probRetroceso && ataque.getDanio() > 0) { // Se valora también que "ataque.getDanio()" sea mayor que cero para evitar que un golpe se pueda fallar y hacer retroceder.
                 // Si el número aleatorio es menor que la probabilidad, el ataque hace retroceder.
                 retroceder = true;
                 System.out.println("\n¡El ataque hizo retroceder!");
@@ -654,19 +657,19 @@ public class Combate {
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
             if (numAleatorio < probFallo) {
                 // Si el número aleatorio es menor que la probabilidad, el ataque falla.
-                ataque.danio = 0;
+                ataque.setDanio(0);
                 System.out.println("\nEl ataque ha fallado.");
             }
             // PROBABILIDAD CRÍTICA:
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
-            if (numAleatorio < probCritico && ataque.danio > 0) { // Se valora también que "ataque.danio" sea mayor que cero para evitar que un golpe se pueda fallar y ser crítico.
+            if (numAleatorio < probCritico && ataque.getDanio() > 0) { // Se valora también que "ataque.getDanio()" sea mayor que cero para evitar que un golpe se pueda fallar y ser crítico.
                 // Si el número aleatorio es menor que la probabilidad, el ataque hace el doble de daño.
-                ataque.danio *= 2;
+                ataque.setDanio(ataque.getDanio()*2);
                 System.out.println("\n¡Golpe crítico!");
             }
             // PROBABILIDAD DE RETROCESO:
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
-            if (numAleatorio < probRetroceso && ataque.danio > 0) { // Se valora también que "ataque.danio" sea mayor que cero para evitar que un golpe se pueda fallar y hacer retroceder.
+            if (numAleatorio < probRetroceso && ataque.getDanio() > 0) { // Se valora también que "ataque.getDanio()" sea mayor que cero para evitar que un golpe se pueda fallar y hacer retroceder.
                 // Si el número aleatorio es menor que la probabilidad, el ataque hace retroceder.
                 retroceder = true;
                 System.out.println("\n¡El ataque hizo retroceder!");
@@ -683,19 +686,19 @@ public class Combate {
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
             if (numAleatorio < probFallo) {
                 // Si el número aleatorio es menor que la probabilidad, el ataque falla.
-                ataque.danio = 0;
+                ataque.setDanio(0);
                 System.out.println("\nEl ataque ha fallado.");
             }
             // PROBABILIDAD CRÍTICA:
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
-            if (numAleatorio < probCritico && ataque.danio > 0) { // Se valora también que "ataque.danio" sea mayor que cero para evitar que un golpe se pueda fallar y ser crítico.
+            if (numAleatorio < probCritico && ataque.getDanio() > 0) { // Se valora también que "ataque.getDanio()" sea mayor que cero para evitar que un golpe se pueda fallar y ser crítico.
                 // Si el número aleatorio es menor que la probabilidad, el ataque hace el doble de daño.
-                ataque.danio *= 2;
+                ataque.setDanio(ataque.getDanio()*2);
                 System.out.println("\n¡Golpe crítico!");
             }
             // PROBABILIDAD DE RETROCESO:
             numAleatorio = aleatorio.nextDouble(); // Genera un número aleatorio entre 0 y 1.
-            if (numAleatorio < probRetroceso && ataque.danio > 0) { // Se valora también que "ataque.danio" sea mayor que cero para evitar que un golpe se pueda fallar y hacer retroceder.
+            if (numAleatorio < probRetroceso && ataque.getDanio() > 0) { // Se valora también que "ataque.getDanio()" sea mayor que cero para evitar que un golpe se pueda fallar y hacer retroceder.
                 // Si el número aleatorio es menor que la probabilidad, el ataque hace retroceder.
                 retroceder = true;
                 System.out.println("\n¡El ataque hizo retroceder!");

@@ -1,5 +1,9 @@
 package com.mycompany.pokemon;
 
+import com.mycompany.pokemon.pojos.Ataque;
+import com.mycompany.pokemon.pojos.Pokemon;
+import com.mycompany.pokemon.pojos.TipoAtaque;
+
 import java.util.*;
 
 public class Main {
