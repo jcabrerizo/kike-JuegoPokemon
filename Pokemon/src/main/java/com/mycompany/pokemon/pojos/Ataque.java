@@ -3,9 +3,9 @@ package com.mycompany.pokemon.pojos;
 public class Ataque {
 
     // ATRIBUTOS DE LOS ATAQUES:
-    private String nombre; // Nombre del ataque.
+    private final String nombre; // Nombre del ataque.
     private int danio; // Daño que causa el ataque.
-    private TipoAtaque tipo; // Tipo de elemento del ataque.
+    private final TipoAtaque tipo; // Tipo de elemento del ataque.
 
     // CONSTRUCTOR DE LOS ATAQUES:
     public Ataque(String nombre, int danio, TipoAtaque tipo) {
@@ -17,10 +17,6 @@ public class Ataque {
     // GETS Y SETS:
     public String getNombre() {
         return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public int getDanio() {
@@ -39,8 +35,37 @@ public class Ataque {
         return tipo.getNombre();
     }
 
-    public void setTipo(TipoAtaque tipo) {
-        this.tipo = tipo;
+    // CREACIÓN DE LOS OBJETOS DE LOS ATAQUES:
+    public static Ataque newGolpeCabeza() {
+        return new Ataque("GOLPE CABEZA", 6, TipoAtaque.NORMAL);
+    }
+
+    public static Ataque newCuchillada() {
+        return new Ataque("CUCHILLADA", 6, TipoAtaque.NORMAL);
+    }
+
+    public static Ataque newHojaAfilada() {
+        return new Ataque("HOJA AFILADA", 6, TipoAtaque.PLANTA);
+    }
+
+    public static Ataque newHidrobomba() {
+        return new Ataque("HIDROBOMBA", 10, TipoAtaque.AGUA);
+    }
+
+    public static Ataque newLlamarada() {
+        return new Ataque("LLAMARADA", 8, TipoAtaque.FUEGO);
+    }
+
+    public static Ataque newPunioHielo() {
+        return new Ataque("PUÑO HIELO", 4, TipoAtaque.HIELO);
+    }
+
+    public static Ataque newPunioTrueno() {
+        return new Ataque("PUÑO TRUENO", 4, TipoAtaque.ELECTRICO);
+    }
+
+    public static Ataque newBofetonLodo() {
+        return new Ataque("BOFETÓN LODO", 4, TipoAtaque.TIERRA);
     }
 }
 

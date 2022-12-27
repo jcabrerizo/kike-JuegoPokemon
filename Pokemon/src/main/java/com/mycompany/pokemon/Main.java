@@ -10,20 +10,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // CREACIÓN DE LOS OBJETOS DE LOS ATAQUES:
-        Ataque golpeCabeza = new Ataque("GOLPE CABEZA", 6, TipoAtaque.NORMAL);
-        Ataque cuchillada = new Ataque("CUCHILLADA", 6, TipoAtaque.NORMAL);
-        Ataque hojaAfilada = new Ataque("HOJA AFILADA", 6, TipoAtaque.PLANTA);
-        Ataque hidrobomba = new Ataque("HIDROBOMBA", 10, TipoAtaque.AGUA);
-        Ataque llamarada = new Ataque("LLAMARADA", 8, TipoAtaque.FUEGO);
-        Ataque punioHielo = new Ataque("PUÑO HIELO", 4, TipoAtaque.HIELO);
-        Ataque punioTrueno = new Ataque("PUÑO TRUENO", 4, TipoAtaque.ELECTRICO);
-        Ataque bofetonLodo = new Ataque("BOFETÓN LODO", 4, TipoAtaque.TIERRA);
+
 
         // CREACIÓN DE LOS OBJETOS DE LOS POKÉMON:
-        Pokemon bulbasaur = new Pokemon("BULBASAUR", "Planta", golpeCabeza, hojaAfilada, bofetonLodo, 100, 45);
-        Pokemon squirtle = new Pokemon("SQUIRTLE", "Agua", golpeCabeza, hidrobomba, punioHielo, 100, 40);
-        Pokemon charmander = new Pokemon("CHARMANDER", "Fuego", cuchillada, llamarada, punioTrueno, 100, 50);
+        Pokemon bulbasaur = new Pokemon("BULBASAUR", "Planta", Ataque.newGolpeCabeza(), Ataque.newHojaAfilada(), Ataque.newBofetonLodo(), 100, 45);
+        Pokemon squirtle = new Pokemon("SQUIRTLE", "Agua", Ataque.newGolpeCabeza(), Ataque.newHidrobomba(), Ataque.newPunioTrueno(), 100, 40);
+        Pokemon charmander = new Pokemon("CHARMANDER", "Fuego", Ataque.newCuchillada(), Ataque.newLlamarada(), Ataque.newPunioHielo(), 100, 50);
 
         // VARIABLES:
         Scanner lectura = new Scanner(System.in); // Se declara la variable "lectura" de la clase "Scanner" para poder hacer introducciones por teclado.
