@@ -7,14 +7,14 @@ public class Main {
     public static void main(String[] args) {
 
         // CREACIÓN DE LOS OBJETOS DE LOS ATAQUES:
-        Ataque golpeCabeza = new Ataque("GOLPE CABEZA", 6, "Normal");
-        Ataque cuchillada = new Ataque("CUCHILLADA", 6, "Normal");
-        Ataque hojaAfilada = new Ataque("HOJA AFILADA", 6, "Planta");
-        Ataque hidrobomba = new Ataque("HIDROBOMBA", 10, "Agua");
-        Ataque llamarada = new Ataque("LLAMARADA", 8, "Fuego");
-        Ataque punioHielo = new Ataque("PUÑO HIELO", 4, "Hielo");
-        Ataque punioTrueno = new Ataque("PUÑO TRUENO", 4, "Eléctrico");
-        Ataque bofetonLodo = new Ataque("BOFETÓN LODO", 4, "Tierra");
+        Ataque golpeCabeza = new Ataque("GOLPE CABEZA", 6, TipoAtaque.NORMAL);
+        Ataque cuchillada = new Ataque("CUCHILLADA", 6, TipoAtaque.NORMAL);
+        Ataque hojaAfilada = new Ataque("HOJA AFILADA", 6, TipoAtaque.PLANTA);
+        Ataque hidrobomba = new Ataque("HIDROBOMBA", 10, TipoAtaque.AGUA);
+        Ataque llamarada = new Ataque("LLAMARADA", 8, TipoAtaque.FUEGO);
+        Ataque punioHielo = new Ataque("PUÑO HIELO", 4, TipoAtaque.HIELO);
+        Ataque punioTrueno = new Ataque("PUÑO TRUENO", 4, TipoAtaque.ELECTRICO);
+        Ataque bofetonLodo = new Ataque("BOFETÓN LODO", 4, TipoAtaque.TIERRA);
 
         // CREACIÓN DE LOS OBJETOS DE LOS POKÉMON:
         Pokemon bulbasaur = new Pokemon("BULBASAUR", "Planta", golpeCabeza, hojaAfilada, bofetonLodo, 100, 45);

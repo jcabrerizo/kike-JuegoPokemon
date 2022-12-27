@@ -5,10 +5,10 @@ public class Ataque {
     // ATRIBUTOS DE LOS ATAQUES:
     String nombre; // Nombre del ataque.
     int danio; // Daño que causa el ataque.
-    String tipo; // Tipo de elemento del ataque.
+    TipoAtaque tipo; // Tipo de elemento del ataque.
 
     // CONSTRUCTOR DE LOS ATAQUES:
-    public Ataque(String nombre, int danio, String tipo) {
+    public Ataque(String nombre, int danio, TipoAtaque tipo) {
         this.nombre = nombre;
         this.danio = danio;
         this.tipo = tipo;
@@ -31,11 +31,16 @@ public class Ataque {
         this.danio = danio;
     }
 
-    public String getTipo() {
+    public TipoAtaque getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public String getNombreTipo() {
+        return tipo.getNombre();
+    }
+
+    public void setTipo(TipoAtaque tipo) {
         this.tipo = tipo;
     }
 }
+

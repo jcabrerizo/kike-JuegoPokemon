@@ -1,5 +1,8 @@
 package com.mycompany.pokemon;
 
+
+import com.mycompany.pokemon.Ataque;
+
 public class Pokemon {
 
     // ATRIBUTOS DE LOS POKÉMON:

@@ -404,66 +404,66 @@ public class Combate {
     public void calcularDanio(Ataque ataque, Pokemon rival) {
 
         // MODIFICADORES TIPO AGUA:
-        if (ataque.getTipo().equals("Agua") && (rival.getTipo().equals("Agua") || rival.getTipo().equals("Planta"))) {
+        if (ataque.getNombreTipo().equals("Agua") && (rival.getTipo().equals("Agua") || rival.getTipo().equals("Planta"))) {
             // AGUA VS AGUA O PLANTA = /2
             ataque.danio /= 2;
             System.out.println("\nNo es muy eficaz...");
-        } else if (ataque.getTipo().equals("Agua") && (rival.getTipo().equals("Fuego"))) {
+        } else if (ataque.getNombreTipo().equals("Agua") && (rival.getTipo().equals("Fuego"))) {
             // AGUA VS FUEGO = *2
             ataque.danio *= 2;
             System.out.println("\n¡Es muy eficaz!");
         }
 
         // MODIFICADORES TIPO PLANTA:
-        if (ataque.getTipo().equals("Planta") && (rival.getTipo().equals("Planta") || rival.getTipo().equals("Fuego"))) {
+        if (ataque.getNombreTipo().equals("Planta") && (rival.getTipo().equals("Planta") || rival.getTipo().equals("Fuego"))) {
             // PLANTA VS PLANTA O FUEGO = /2
             ataque.danio /= 2;
             System.out.println("\nNo es muy eficaz...");
-        } else if (ataque.getTipo().equals("Planta") && (rival.getTipo().equals("Agua"))) {
+        } else if (ataque.getNombreTipo().equals("Planta") && (rival.getTipo().equals("Agua"))) {
             // PLANTA VS AGUA = *2
             ataque.danio *= 2;
             System.out.println("\n¡Es muy eficaz!");
         }
 
         // MODIFICADORES TIPO FUEGO:
-        if (ataque.getTipo().equals("Fuego") && (rival.getTipo().equals("Fuego") || rival.getTipo().equals("Agua"))) {
+        if (ataque.getNombreTipo().equals("Fuego") && (rival.getTipo().equals("Fuego") || rival.getTipo().equals("Agua"))) {
             // FUEGO VS FUEGO O AGUA = /2
             ataque.danio /= 2;
             System.out.println("\nNo es muy eficaz...");
-        } else if (ataque.getTipo().equals("Fuego") && (rival.getTipo().equals("Planta"))) {
+        } else if (ataque.getNombreTipo().equals("Fuego") && (rival.getTipo().equals("Planta"))) {
             // FUEGO VS PLANTA = *2
             ataque.danio *= 2;
             System.out.println("\n¡Es muy eficaz!");
         }
 
         // MODIFICADORES TIPO TIERRA:
-        if (ataque.getTipo().equals("Tierra") && (rival.getTipo().equals("Planta"))) {
+        if (ataque.getNombreTipo().equals("Tierra") && (rival.getTipo().equals("Planta"))) {
             // TIERRA VS PLANTA = /2
             ataque.danio /= 2;
             System.out.println("\nNo es muy eficaz...");
-        } else if (ataque.getTipo().equals("Tierra") && (rival.getTipo().equals("Fuego"))) {
+        } else if (ataque.getNombreTipo().equals("Tierra") && (rival.getTipo().equals("Fuego"))) {
             // TIERRA VS FUEGO = *2
             ataque.danio *= 2;
             System.out.println("\n¡Es muy eficaz!");
         }
 
         // MODIFICADORES TIPO HIELO:
-        if (ataque.getTipo().equals("Hielo") && (rival.getTipo().equals("Fuego") || rival.getTipo().equals("Agua"))) {
+        if (ataque.getNombreTipo().equals("Hielo") && (rival.getTipo().equals("Fuego") || rival.getTipo().equals("Agua"))) {
             // HIELO VS FUEGO O AGUA = /2
             ataque.danio /= 2;
             System.out.println("\nNo es muy eficaz...");
-        } else if (ataque.getTipo().equals("Hielo") && (rival.getTipo().equals("Planta"))) {
+        } else if (ataque.getNombreTipo().equals("Hielo") && (rival.getTipo().equals("Planta"))) {
             // HIELO VS PLANTA = *2
             ataque.danio *= 2;
             System.out.println("\n¡Es muy eficaz!");
         }
 
         // MODIFICADORES TIPO ELÉCTRICO:
-        if (ataque.getTipo().equals("Eléctrico") && (rival.getTipo().equals("Planta"))) {
+        if (ataque.getNombreTipo().equals("Eléctrico") && (rival.getTipo().equals("Planta"))) {
             // ELÉCTRICO VS PLANTA = /2
             ataque.danio /= 2;
             System.out.println("\nNo es muy eficaz...");
-        } else if (ataque.getTipo().equals("Eléctrico") && (rival.getTipo().equals("Agua"))) {
+        } else if (ataque.getNombreTipo().equals("Eléctrico") && (rival.getTipo().equals("Agua"))) {
             // ELÉCTRICO VS AGUA = *2
             ataque.danio *= 2;
             System.out.println("\n¡Es muy eficaz!");
