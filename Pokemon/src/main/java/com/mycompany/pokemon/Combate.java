@@ -40,7 +40,7 @@ public class Combate {
         // Se decide el primer turno según la velocidad de cada Pokémon:
         turnoJugador = miPokemon.getVelocidad() >= rivalPokemon.getVelocidad(); // Si la velocidad de "miPokemon" es mayor que la de "rivalPokemon", se devuelve "true".
 
-        if (turnoJugador == true) {
+        if (turnoJugador) {
             System.out.println("\n" + miPokemon.getNombre() + " es más rápido, comienza primero.");
         } else {
             System.out.println("\n" + rivalPokemon.getNombre() + " es más rápido, comienza primero.");
@@ -48,7 +48,7 @@ public class Combate {
 
         do {
 
-            if (turnoJugador == true && miPokemon.getVida() > 0) {
+            if (turnoJugador && miPokemon.getVida() > 0) {
 
                 // TURNO DEL JUGADOR:
                 do {
@@ -183,7 +183,7 @@ public class Combate {
 
                     } else if (opcion == 5) {
 
-                        if (mochilaVacia == false) { // Si la mochila está llena, se ejecutan las siguientes líneas.
+                        if (!mochilaVacia) { // Si la mochila está llena, se ejecutan las siguientes líneas.
 
                             System.out.println("\n _________\n"
                                     + "|_)_______)\n"
@@ -222,7 +222,7 @@ public class Combate {
                                     salirMochila = true; // Se sale de la mochila
                                 }
 
-                            } while (salirMochila == false);
+                            } while (!salirMochila);
 
                         } else {
                             System.out.println("\n _________\n"
@@ -289,13 +289,13 @@ public class Combate {
                     } while (!continuar.equalsIgnoreCase("S"));
 
                     // Si se elige la opción 4 para ver los datos del Pokémon o la 5 saliendo de la mochila llena o habiendo usado previamente el objeto, no se saltará al siguiente turno.
-                    if (opcion == 4 || (opcion == 5 && mochilaVacia == false)) {
+                    if (opcion == 4 || (opcion == 5 && !mochilaVacia)) {
                         turnoJugador = true;
                     }
 
-                } while (retroceder == true || objetoUsado == true);
+                } while (retroceder || objetoUsado);
 
-            } else if (turnoJugador == false && rivalPokemon.getVida() > 0) {
+            } else if (!turnoJugador && rivalPokemon.getVida() > 0) {
 
                 // TURNO DE LA MÁQUINA:
                 do {
@@ -388,7 +388,7 @@ public class Combate {
 
                     } while (!continuar.equalsIgnoreCase("S"));
 
-                } while (retroceder == true);
+                } while (retroceder);
             }
 
         } while (miPokemon.getVida() > 0 && rivalPokemon.getVida() > 0); // El combate continuará hasta que uno de los dos Pokémon llegue a 0 de vida.
