@@ -3,6 +3,9 @@ package com.mycompany.pokemon.model;
 
 public abstract class Pokemon {
 
+    // Metodos abstractos, a implementar por cada instancia
+    public abstract String getAsciiArt();
+
     // ATRIBUTOS DE LOS POKÉMON:
     private String nombre; // Nombre del Pokémon.
     private String tipo; // Tipo de elemento del Pokémon.
@@ -78,5 +81,11 @@ public abstract class Pokemon {
 
     public void setVelocidad(int velocidad) {
         this.velocidad = velocidad;
+    }
+
+    protected enum TipoPokemon{
+        PLANTA,
+        AGUA,
+        FUEGO;
     }
 }
