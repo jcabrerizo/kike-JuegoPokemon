@@ -20,11 +20,11 @@ public class Bulbasur extends Pokemon {
     }
 
     public Bulbasur(){
-        this(NOMBRE, "", ATAQUE1, ATAQUE2, ATAQUE3, VIDA, VELOCIDAD);
+        this(NOMBRE, TipoPokemon.PLANTA, ATAQUE1, ATAQUE2, ATAQUE3, VIDA, VELOCIDAD);
     }
 
     // ("BULBASAUR", "Planta", Ataque.newGolpeCabeza(), Ataque.newHojaAfilada(), Ataque.newBofetonLodo(), 100, 45)
-    protected Bulbasur(String nombre, String tipo, Ataque ataque1, Ataque ataque2, Ataque ataque3, int vida, int velocidad) {
+    protected Bulbasur(String nombre, TipoPokemon tipo, Ataque ataque1, Ataque ataque2, Ataque ataque3, int vida, int velocidad) {
         super(nombre, tipo, ataque1, ataque2, ataque3, vida, velocidad);
     }
 }

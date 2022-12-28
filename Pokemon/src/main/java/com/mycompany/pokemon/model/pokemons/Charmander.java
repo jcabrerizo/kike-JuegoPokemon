@@ -20,11 +20,11 @@ public class Charmander extends Pokemon {
     }
 
     public Charmander(){
-        this(NOMBRE, "", ATAQUE1, ATAQUE2, ATAQUE3, VIDA, VELOCIDAD);
+        this(NOMBRE, TipoPokemon.FUEGO, ATAQUE1, ATAQUE2, ATAQUE3, VIDA, VELOCIDAD);
     }
 
     //("CHARMANDER", "Fuego", Ataque.newCuchillada(), Ataque.newLlamarada(), Ataque.newPunioHielo(), 100, 50)
-    protected Charmander(String nombre, String tipo, Ataque ataque1, Ataque ataque2, Ataque ataque3, int vida, int velocidad) {
+    protected Charmander(String nombre, TipoPokemon tipo, Ataque ataque1, Ataque ataque2, Ataque ataque3, int vida, int velocidad) {
         super(nombre, tipo, ataque1, ataque2, ataque3, vida, velocidad);
     }
 }

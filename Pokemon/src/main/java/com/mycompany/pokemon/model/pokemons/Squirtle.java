@@ -19,11 +19,11 @@ public class Squirtle extends Pokemon {
                 "  u u""";
     }
     public Squirtle(){
-        this(NOMBRE, "", ATAQUE1, ATAQUE2, ATAQUE3, VIDA, VELOCIDAD);
+        this(NOMBRE, TipoPokemon.AGUA, ATAQUE1, ATAQUE2, ATAQUE3, VIDA, VELOCIDAD);
     }
 
     //("SQUIRTLE", "Agua", Ataque.newGolpeCabeza(), Ataque.newHidrobomba(), Ataque.newPunioTrueno(), 100, 40)
-    protected Squirtle(String nombre, String tipo, Ataque ataque1, Ataque ataque2, Ataque ataque3, int vida, int velocidad) {
+    protected Squirtle(String nombre, TipoPokemon tipo, Ataque ataque1, Ataque ataque2, Ataque ataque3, int vida, int velocidad) {
         super(nombre, tipo, ataque1, ataque2, ataque3, vida, velocidad);
     }
 
