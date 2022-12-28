@@ -1,4 +1,4 @@
-package com.mycompany.pokemon.pojos;
+package com.mycompany.pokemon.model;
 
 public enum TipoAtaque {
     NORMAL("Normal"),

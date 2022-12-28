@@ -1,7 +1,7 @@
-package com.mycompany.pokemon.pojos;
+package com.mycompany.pokemon.model;
 
 
-public class Pokemon {
+public abstract class Pokemon {
 
     // ATRIBUTOS DE LOS POKÉMON:
     private String nombre; // Nombre del Pokémon.
@@ -13,7 +13,7 @@ public class Pokemon {
     private int velocidad; // Velocidad del Pokémon.
 
     // CONSTRUCTOR DE LOS POKÉMON:
-    public Pokemon(String nombre, String tipo, Ataque ataque1, Ataque ataque2, Ataque ataque3, int vida, int velocidad) {
+    protected Pokemon(String nombre, String tipo, Ataque ataque1, Ataque ataque2, Ataque ataque3, int vida, int velocidad) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.ataque1 = ataque1;

@@ -1,7 +1,7 @@
 package com.mycompany.pokemon;
 
-import com.mycompany.pokemon.pojos.Ataque;
-import com.mycompany.pokemon.pojos.Pokemon;
+import com.mycompany.pokemon.model.Ataque;
+import com.mycompany.pokemon.model.Pokemon;
 
 import java.util.*;
 

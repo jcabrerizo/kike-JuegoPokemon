@@ -1,8 +1,10 @@
 package com.mycompany.pokemon;
 
-import com.mycompany.pokemon.pojos.Ataque;
-import com.mycompany.pokemon.pojos.Pokemon;
-import com.mycompany.pokemon.pojos.TipoAtaque;
+import com.mycompany.pokemon.model.Ataque;
+import com.mycompany.pokemon.model.Pokemon;
+import com.mycompany.pokemon.model.pokemons.Bulbasur;
+import com.mycompany.pokemon.model.pokemons.Charmander;
+import com.mycompany.pokemon.model.pokemons.Squirtle;
 
 import java.util.*;
 
@@ -13,9 +15,9 @@ public class Main {
 
 
         // CREACIÓN DE LOS OBJETOS DE LOS POKÉMON:
-        Pokemon bulbasaur = new Pokemon("BULBASAUR", "Planta", Ataque.newGolpeCabeza(), Ataque.newHojaAfilada(), Ataque.newBofetonLodo(), 100, 45);
-        Pokemon squirtle = new Pokemon("SQUIRTLE", "Agua", Ataque.newGolpeCabeza(), Ataque.newHidrobomba(), Ataque.newPunioTrueno(), 100, 40);
-        Pokemon charmander = new Pokemon("CHARMANDER", "Fuego", Ataque.newCuchillada(), Ataque.newLlamarada(), Ataque.newPunioHielo(), 100, 50);
+        Pokemon bulbasaur = new Bulbasur("BULBASAUR", "Planta", Ataque.newGolpeCabeza(), Ataque.newHojaAfilada(), Ataque.newBofetonLodo(), 100, 45);
+        Pokemon squirtle = new Squirtle("SQUIRTLE", "Agua", Ataque.newGolpeCabeza(), Ataque.newHidrobomba(), Ataque.newPunioTrueno(), 100, 40);
+        Pokemon charmander = new Charmander("CHARMANDER", "Fuego", Ataque.newCuchillada(), Ataque.newLlamarada(), Ataque.newPunioHielo(), 100, 50);
 
         // VARIABLES:
         Scanner lectura = new Scanner(System.in); // Se declara la variable "lectura" de la clase "Scanner" para poder hacer introducciones por teclado.
