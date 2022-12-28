@@ -29,6 +29,7 @@ public class Main {
                 System.out.println("1. BULBASAUR (Planta/Veneno)");
                 System.out.println("2. SQUIRTLE (Agua)");
                 System.out.println("3. CHARMANDER (Fuego)");
+                System.out.println("4. EXIT");
 
                 opcionJugador = lectura.nextInt();
 
@@ -45,12 +46,17 @@ public class Main {
                         miPokemon = charmander;
                         rivalPokemon = squirtle;
                         break;
+                    case 4:
+                    	System.out.println("Fin de programa I");
+                    	System.exit(0);
+                    	break;
                     default:
                         System.out.println("\n¡Debes elegir alguno de los tres!");
                         break;
                 }
 
-            } while (opcionJugador != 1 && opcionJugador != 2 && opcionJugador != 3);
+            } while (opcionJugador<1||opcionJugador>3); 
+            //while (opcionJugador != 1 && opcionJugador != 2 && opcionJugador != 3);
 
             System.out.println("\nHas elegido a " + miPokemon.getNombre() + ":");
             System.out.println(miPokemon.getAsciiArt());
@@ -66,10 +72,14 @@ public class Main {
                     // COMIENZA EL COMBATE:
                     Combate combate = new Combate(miPokemon, rivalPokemon); // Se crea el objeto combate con los parámetros que identifican al jugador y al rival.
                     combate.iniciarCombate(); // Se llama al método para iniciar el combate.
-                } else if (!continuar.equalsIgnoreCase("S") && !continuar.equalsIgnoreCase("N")) {
+                } else if (!continuar.equalsIgnoreCase("N")) {
                     System.out.println("\nDebes responder con 'S' para confirmar o 'N' para denegar.");
-                }
-            } while (!continuar.equalsIgnoreCase("S") && !continuar.equalsIgnoreCase("N"));
-        } while (continuar.equalsIgnoreCase("N"));
+                } 
+            } while (!continuar.equalsIgnoreCase("N"));
+            
+        } while (continuar.equalsIgnoreCase("s"));
+        
+        lectura.close();
+        System.out.println("Fin de programa II");
     }
 }

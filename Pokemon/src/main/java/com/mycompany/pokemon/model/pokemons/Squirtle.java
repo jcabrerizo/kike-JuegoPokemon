@@ -13,10 +13,9 @@ public class Squirtle extends Pokemon {
 
     @Override
     public String getAsciiArt() {
-        return """
-                $  (o_)" +
-                " \\((´)´" +
-                "  u u""";
+        return "  ( o_)\n" +
+               "@(#|\\)\\\n" +
+               "  u u";
     }
     public Squirtle(){
         this(NOMBRE, TipoPokemon.AGUA, ATAQUE1, ATAQUE2, ATAQUE3, VIDA, VELOCIDAD);

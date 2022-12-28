@@ -13,10 +13,9 @@ public class Charmander extends Pokemon {
 
     @Override
     public String getAsciiArt() {
-        return """
-                ( o_)
-                @(#|\\)\\
-                  u u""";
+        return "$  (o_)\n" + 
+               " \\((´)´\n" +
+               "  u u";
     }
 
     public Charmander(){

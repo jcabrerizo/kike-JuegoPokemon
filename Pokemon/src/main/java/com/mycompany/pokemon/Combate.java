@@ -65,14 +65,15 @@ public class Combate {
                         System.out.println("3. " + miPokemon.getAtaque3().getNombre());
                         System.out.println("4. -> Ver datos del Pokémon");
                         System.out.println("5. -> Mochila");
+                        System.out.println("6. -> EXIT");
 
                         opcion = lectura.nextInt();
 
-                        if (opcion < 1 || opcion > 5) {
-                            System.out.println("\n¡Debes introducir un número del 1 al 5 para seleccionar una opción!");
+                        if (opcion < 1 || opcion > 6) {
+                            System.out.println("\n¡Debes introducir un número del 1 al 6 para seleccionar una opción!");
                         }
 
-                    } while (opcion < 1 || opcion > 5); // Mientras no se seleccione alguna de esas opciones numéricas, se repetirá el menú.
+                    } while (opcion < 1 || opcion > 6); // Mientras no se seleccione alguna de esas opciones numéricas, se repetirá el menú.
 
                     if (opcion == 1) {
 
@@ -104,6 +105,9 @@ public class Combate {
 
                         miPokemon.getAtaque3().setDanio(danioBase); // Recupera el daño inicial del ataque.
 
+                    } else if (opcion==6) {
+                    	System.out.println("Fin de programa III");
+                    	System.exit(0);
                     } else if (opcion == 4) {
 
                         if (miPokemon.getNombre().equals("BULBASAUR")) {

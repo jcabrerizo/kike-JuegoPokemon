@@ -13,10 +13,9 @@ public class Bulbasur extends Pokemon {
 
     @Override
     public String getAsciiArt() {
-        return """
-                ((|))" +
-                "( { o_}" +
-                " u uu """;
+        return "((|))\n" +
+               "( { o_}\n" +
+               " u uu";
     }
 
     public Bulbasur(){
