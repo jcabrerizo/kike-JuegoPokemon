@@ -5,6 +5,9 @@ public class Ataque {
     // ATRIBUTOS DE LOS ATAQUES:
     private final String nombre; // Nombre del ataque.
     private int danio; // Daño que causa el ataque.
+    private int precision; // TODO
+    private int critica; // TODO
+    private int retroceso; // TODO
     private final TipoAtaque tipo; // Tipo de elemento del ataque.
 
     // CONSTRUCTOR DE LOS ATAQUES:
@@ -33,6 +36,30 @@ public class Ataque {
 
     public String getNombreTipo() {
         return tipo.getNombre();
+    }
+
+    public int getPrecision() {
+        return precision;
+    }
+
+    public void setPrecision(int precision) {
+        this.precision = precision;
+    }
+
+    public int getCritica() {
+        return critica;
+    }
+
+    public void setCritica(int critica) {
+        this.critica = critica;
+    }
+
+    public int getRetroceso() {
+        return retroceso;
+    }
+
+    public void setRetroceso(int retroceso) {
+        this.retroceso = retroceso;
     }
 
     // CREACIÓN DE LOS OBJETOS DE LOS ATAQUES:

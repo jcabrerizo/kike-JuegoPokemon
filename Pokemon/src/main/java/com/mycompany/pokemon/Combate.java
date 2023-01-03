@@ -8,8 +8,8 @@ import java.util.*;
 public class Combate {
 
     // ATRIBUTOS DEL COMBATE:
-    Pokemon miPokemon; // Pokémon del jugador.
-    Pokemon rivalPokemon; // Pokémon del rival.
+    final Pokemon miPokemon; // Pokémon del jugador.
+    final Pokemon rivalPokemon; // Pokémon del rival.
     String continuar; // Decide continuar con el siguiente turno.
     String usar; // Decide el uso del objeto de la mochila.
     boolean turnoJugador; // Turno del jugador (true) o del rival (false).
@@ -17,7 +17,6 @@ public class Combate {
     boolean mochilaVacia; // Determina si la mochila está llena o no.
     boolean salirMochila; // Determina la salida de la mochila.
     boolean objetoUsado; // Determina si el objeto fue usado.
-    int opcion; // Decide el ataque del jugador.
     int opcionRival; // Decide el ataque del rival.
     int danioBase; // Almacena el daño base del ataque para recuperarlo después de usar modificadores de daño por efectividad, para que no se acumule en los turnos siguientes.
     double probFallo; // Almacena el valor numérico para la probabilidad de fallar un ataque.
@@ -40,174 +39,50 @@ public class Combate {
         // Se decide el primer turno según la velocidad de cada Pokémon:
         turnoJugador = miPokemon.getVelocidad() >= rivalPokemon.getVelocidad(); // Si la velocidad de "miPokemon" es mayor que la de "rivalPokemon", se devuelve "true".
 
-        if (turnoJugador) {
-            System.out.println("\n" + miPokemon.getNombre() + " es más rápido, comienza primero.");
-        } else {
-            System.out.println("\n" + rivalPokemon.getNombre() + " es más rápido, comienza primero.");
-        }
+        System.out.println("\n" + (turnoJugador ? miPokemon.getNombre() : rivalPokemon.getNombre()) + " es más rápido, comienza primero.");
 
         do {
-
             if (turnoJugador && miPokemon.getVida() > 0) {
-
                 // TURNO DEL JUGADOR:
                 do {
-
-                    do {
-
-                        retroceder = false;
-                        objetoUsado = false;
-
-                        System.out.println("\n**************** TU TURNO: ****************");
-                        System.out.println("\n¿Qué debería hacer " + miPokemon.getNombre() + "?");
-                        System.out.println("1. " + miPokemon.getAtaque1().getNombre());
-                        System.out.println("2. " + miPokemon.getAtaque2().getNombre());
-                        System.out.println("3. " + miPokemon.getAtaque3().getNombre());
-                        System.out.println("4. -> Ver datos del Pokémon");
-                        System.out.println("5. -> Mochila");
-
-                        opcion = lectura.nextInt();
-
-                        if (opcion < 1 || opcion > 5) {
-                            System.out.println("\n¡Debes introducir un número del 1 al 5 para seleccionar una opción!");
-                        }
-
-                    } while (opcion < 1 || opcion > 5); // Mientras no se seleccione alguna de esas opciones numéricas, se repetirá el menú.
-
-                    if (opcion == 1) {
-
-                        danioBase = miPokemon.getAtaque1().getDanio(); // Guarda el daño inicial del ataque.
-                        calcularDanio(miPokemon.getAtaque1(), rivalPokemon); // Llamada al método para calcular el daño del ataque 1.
-
-                        rivalPokemon.setVida(rivalPokemon.getVida() - miPokemon.getAtaque1().getDanio()); // Se calcula el daño recibido en la vida del rival.
-                        System.out.println("\n" + miPokemon.getNombre() + " usó " + miPokemon.getAtaque1().getNombre() + " causando " + miPokemon.getAtaque1().getDanio() + " puntos de daño.");
-
-                        miPokemon.getAtaque1().setDanio(danioBase); // Recupera el daño inicial del ataque.
-
-                    } else if (opcion == 2) {
-
-                        danioBase = miPokemon.getAtaque2().getDanio(); // Guarda el daño inicial del ataque.
-                        calcularDanio(miPokemon.getAtaque2(), rivalPokemon); // Se llama al método para calcular el daño del ataque 2.
-
-                        rivalPokemon.setVida(rivalPokemon.getVida() - miPokemon.getAtaque2().getDanio()); // Se calcula el daño recibido en la vida del rival.
-                        System.out.println("\n" + miPokemon.getNombre() + " usó " + miPokemon.getAtaque2().getNombre() + " causando " + miPokemon.getAtaque2().getDanio() + " puntos de daño.");
-
-                        miPokemon.getAtaque2().setDanio(danioBase); // Recupera el daño inicial del ataque.
-
-                    } else if (opcion == 3) {
-
-                        danioBase = miPokemon.getAtaque3().getDanio(); // Guarda el daño inicial del ataque.
-                        calcularDanio(miPokemon.getAtaque3(), rivalPokemon); // Se llama al método para calcular el daño del ataque 3.
-
-                        rivalPokemon.setVida(rivalPokemon.getVida() - miPokemon.getAtaque3().getDanio()); // Se calcula el daño recibido en la vida del rival.
-                        System.out.println("\n" + miPokemon.getNombre() + " usó " + miPokemon.getAtaque3().getNombre() + " causando " + miPokemon.getAtaque3().getDanio() + " puntos de daño.");
-
-                        miPokemon.getAtaque3().setDanio(danioBase); // Recupera el daño inicial del ataque.
-
-                    } else if (opcion == 4) {
-
-                        if (miPokemon.getNombre().equals("BULBASAUR")) {
-
-                            System.out.println("\n ----------------------\n"
-                                    + "|      BULBASAUR       |\n"
-                                    + "| 	 ((|))         |\n"
-                                    + "| 	 ( { o_}       |\n"
-                                    + "| 	  u uu	       |\n"
-                                    + " ----------------------");
-                            System.out.println("Tipo: Planta/Veneno");
-                            System.out.println("PS: 100");
-                            System.out.println("Velocidad: 45");
-                            System.out.println("\nGOLPE CABEZA (NORMAL):\n"
-                                    + "-> Daño: 6\n"
-                                    + "-> Precisión: 100%\n"
-                                    + "-> Prob. crítica: 5%\n"
-                                    + "-> Prob. retroceso: 30%");
-                            System.out.println("\nHOJA AFILADA (PLANTA):\n"
-                                    + "-> Daño: 6\n"
-                                    + "-> Precisión: 100%\n"
-                                    + "-> Prob. crítica: 20%");
-                            System.out.println("\nBOFETÓN LODO (TIERRA):\n"
-                                    + "-> Daño: 4\n"
-                                    + "-> Precisión: 100%\n"
-                                    + "-> Prob. crítica: 5%");
-
-                        } else if (miPokemon.getNombre().equals("SQUIRTLE")) {
-
-                            System.out.println("\n ----------------------\n"
-                                    + "|       SQUIRTLE       |\n"
-                                    + "| 	  ( o_)        |\n"
-                                    + "|       @(#|\\)\\        |\n"
-                                    + "|         u u          |\n"
-                                    + " ----------------------");
-                            System.out.println("Tipo: Agua");
-                            System.out.println("PS: 100");
-                            System.out.println("Velocidad: 40");
-                            System.out.println("\nGOLPE CABEZA (NORMAL):\n"
-                                    + "-> Daño: 6\n"
-                                    + "-> Precisión: 100%\n"
-                                    + "-> Prob. crítica: 5%\n"
-                                    + "-> Prob. retroceso: 30%");
-                            System.out.println("\nHIDROBOMBA (AGUA):\n"
-                                    + "-> Daño: 10\n"
-                                    + "-> Precisión: 80%\n"
-                                    + "-> Prob. crítica: 5%");
-                            System.out.println("\nPUÑO HIELO (HIELO):\n"
-                                    + "-> Daño: 4\n"
-                                    + "-> Precisión: 100%\n"
-                                    + "-> Prob. crítica: 5%");
-
-                        } else if (miPokemon.getNombre().equals("CHARMANDER")) {
-
-                            System.out.println("\n ----------------------\n"
-                                    + "|      CHARMANDER      |\n"
-                                    + "|       $  (o_)        |\n"
-                                    + "|        \\((´)´        |\n"
-                                    + "|         u u          |\n"
-                                    + " ----------------------");
-                            System.out.println("Tipo: Fuego");
-                            System.out.println("PS: 100");
-                            System.out.println("Velocidad: 50");
-                            System.out.println("\nCUCHILLADA (NORMAL):\n"
-                                    + "-> Daño: 6\n"
-                                    + "-> Precisión: 100%\n"
-                                    + "-> Prob. crítica: 40%");
-                            System.out.println("\nLLAMARADA (FUEGO):\n"
-                                    + "-> Daño: 8\n"
-                                    + "-> Precisión: 85%\n"
-                                    + "-> Prob. crítica: 5%");
-                            System.out.println("\nPUÑO TRUENO (ELÉCTRICO):\n"
-                                    + "-> Daño: 4\n"
-                                    + "-> Precisión: 100%\n"
-                                    + "-> Prob. crítica: 5%");
-                        }
-
-                    } else if (opcion == 5) {
-
+                    retroceder = false;
+                    objetoUsado = false;
+                    Accion accion = getAccionTurno(lectura);
+                    if (accion.esAtaque) {
+                        Ataque ataqueEscogido = getAtaque(miPokemon, accion.indiceAtaque);
+                        danioBase = ataqueEscogido.getDanio(); // Guarda el daño inicial del ataque.
+                        calcularDanio(ataqueEscogido, rivalPokemon); // Llamada al método para calcular el daño del ataque 1.
+                        rivalPokemon.setVida(rivalPokemon.getVida() - ataqueEscogido.getDanio()); // Se calcula el daño recibido en la vida del rival.
+                        System.out.println("\n" + miPokemon.getNombre() + " usó " + ataqueEscogido.getNombre() + " causando " + ataqueEscogido.getDanio() + " puntos de daño.");
+                        ataqueEscogido.setDanio(danioBase); // Recupera el daño inicial del ataque.
+                    } else if (accion.equals(Accion.VER_DATOS)) {
+                        mostrarDatosPokemon(miPokemon);
+                    } else if (accion.equals(Accion.MOCHILA)) {
                         if (!mochilaVacia) { // Si la mochila está llena, se ejecutan las siguientes líneas.
-
-                            System.out.println("\n _________\n"
-                                    + "|_)_______)\n"
-                                    + "|| |_| |_||\n"
-                                    + "||________|\n"
-                                    + "| |        |\n"
-                                    + "|_|________|");
+                            System.out.println("""
+                                     _________
+                                    |_)_______)
+                                    || |_| |_||
+                                    ||________|
+                                    | |        |
+                                    |_|________|""");
                             System.out.println("\n -> x1 SUPERPOCIÓN");
                             System.out.println("(Restaura 50 de PS)");
                             System.out.println("\n¿Usar? (S/N)");
                             usar = lectura.next();
 
                             do {
-
                                 if (usar.equalsIgnoreCase("S")) {
                                     miPokemon.setVida(miPokemon.getVida() + 50);
                                     if (miPokemon.getVida() > 100) {
                                         miPokemon.setVida(100); // Si al curarse la vida pasa de 100, se iguala a 100.
                                     }
 
-                                    System.out.println(" ____ \n"
-                                            + " |__|  \n"
-                                            + "/ PS \\\n"
-                                            + "\\____/");
+                                    System.out.println("""
+                                             ____\s
+                                             |__| \s
+                                            / PS \\
+                                            \\____/""");
                                     System.out.println("\n¡PS restaurados!");
 
                                     mochilaVacia = true; // La mochila pasa a estar vacía.
@@ -224,173 +99,71 @@ public class Combate {
 
                             } while (!salirMochila);
 
-                        } else {
-                            System.out.println("\n _________\n"
-                                    + "|_)_______)\n"
-                                    + "|| |_| |_||\n"
-                                    + "||________|\n"
-                                    + "| |        |\n"
-                                    + "|_|________|");
+                        } else { //cuando se ejecuta esto?
+                            System.out.println("""
+
+                                     _________
+                                    |_)_______)
+                                    || |_| |_||
+                                    ||________|
+                                    | |        |
+                                    |_|________|""");
                             System.out.println("\nLa mochila está vacía.");
                             objetoUsado = true;
                         }
                     }
-
-                    if (miPokemon.getNombre().equals("BULBASAUR") && opcion != 4 && opcion != 5) { // Se valora también que al escoger las opciones 4 y 5 no se muestre el panel de combate.
-
-                        System.out.println(" ----------------------\n"
-                                + "|                      |\n"
-                                + "| ((|))        (_o)  $ |\n"
-                                + "| ( { o_}  VS  `(`))/  |\n"
-                                + "|  u uu	         u u   |\n"
-                                + " ----------------------\n"
-                                + "  PS: " + miPokemon.getVida() + "       PS: " + rivalPokemon.getVida() + "\n"
-                                + " ----------------------");
-
-                    } else if (miPokemon.getNombre().equals("SQUIRTLE") && opcion != 4 && opcion != 5) { // Se valora también que al escoger las opciones 4 y 5 no se muestre el panel de combate.
-
-                        System.out.println(" ----------------------\n"
-                                + "|                      |\n"
-                                + "|   ( o_)        ((|)) |\n"
-                                + "| @(#|\\)\\  VS  {_o } ) |\n"
-                                + "|   u u          uu u  |\n"
-                                + " ----------------------\n"
-                                + "  PS: " + miPokemon.getVida() + "       PS: " + rivalPokemon.getVida() + "\n"
-                                + " ----------------------");
-
-                    } else if (miPokemon.getNombre().equals("CHARMANDER") && opcion != 4 && opcion != 5) { // Se valora también que al escoger las opciones 4 y 5 no se muestre el panel de combate.
-
-                        System.out.println(" ----------------------\n"
-                                + "|                      |\n"
-                                + "| $  (o_)      (_o )   |\n"
-                                + "|  \\((´)´  VS  /(/|#)@ |\n"
-                                + "|   u u          u u   |\n"
-                                + " ----------------------\n"
-                                + "  PS: " + miPokemon.getVida() + "       PS: " + rivalPokemon.getVida() + "\n"
-                                + " ----------------------");
-                    }
-
+                    mostrarPanelCombate();
                     // MENSAJE DE CONTINUAR TURNO:
                     do {
-
                         System.out.println("\nCONTINUAR(S)");
-
                         continuar = lectura.next();
-
                         if (continuar.equalsIgnoreCase("S")) {
-
                             turnoJugador = false; // Continúa con el turno del oponente.
-
                         } else {
-
                             System.out.println("\nEscribe 'S' para pasar al siguiente turno.");
                         }
-
                     } while (!continuar.equalsIgnoreCase("S"));
 
                     // Si se elige la opción 4 para ver los datos del Pokémon o la 5 saliendo de la mochila llena o habiendo usado previamente el objeto, no se saltará al siguiente turno.
-                    if (opcion == 4 || (opcion == 5 && !mochilaVacia)) {
+                    if (!accion.equals(Accion.VER_DATOS) && (!Accion.MOCHILA.equals(accion) || mochilaVacia)) {
+                        //TODO: que es esto? por que es un if vacio? se puede invertir la condicion y dejar solo un if sin else si esta vacion
+                    } else {
                         turnoJugador = true;
                     }
-
                 } while (retroceder || objetoUsado);
 
             } else if (!turnoJugador && rivalPokemon.getVida() > 0) {
-
+                Accion accionRival;
                 // TURNO DE LA MÁQUINA:
                 do {
 
                     retroceder = false;
 
                     opcionRival = aleatorio.nextInt(3) + 1; // La variable obtiene el valor aleatorio de 1 a 3. Para evitar que sea de 0 a 2, se añade +1.
+                    accionRival = getAccionByIndex(opcionRival);
 
                     System.out.println("\n********** TURNO DE TU OPONENTE: **********");
 
-                    if (opcionRival == 1) {
-
-                        danioBase = rivalPokemon.getAtaque1().getDanio(); // Guarda el daño inicial del ataque.
-
-                        calcularDanio(rivalPokemon.getAtaque1(), miPokemon); // Se llama al método para calcular el daño del ataque 1.
-                        miPokemon.setVida(miPokemon.getVida() - rivalPokemon.getAtaque1().getDanio()); // Se calcula el daño recibido en la vida del jugador.
-                        System.out.println("\n" + rivalPokemon.getNombre() + " enemigo usó " + rivalPokemon.getAtaque1().getNombre() + " causando " + rivalPokemon.getAtaque1().getDanio() + " puntos de daño.");
-
-                        rivalPokemon.getAtaque1().setDanio(danioBase); // Recupera el daño inicial del ataque.
-
-                    } else if (opcionRival == 2) {
-
-                        danioBase = rivalPokemon.getAtaque2().getDanio(); // Guarda el daño inicial del ataque.
-
-                        calcularDanio(rivalPokemon.getAtaque2(), miPokemon); // Se llama al método para calcular el daño del ataque 2.
-                        miPokemon.setVida(miPokemon.getVida() - rivalPokemon.getAtaque2().getDanio()); // Se calcula el daño recibido en la vida del jugador.
-                        System.out.println("\n" + rivalPokemon.getNombre() + " enemigo usó " + rivalPokemon.getAtaque2().getNombre() + " causando " + rivalPokemon.getAtaque2().getDanio() + " puntos de daño.");
-
-                        rivalPokemon.getAtaque2().setDanio(danioBase); // Recupera el daño inicial del ataque.
-
-                    } else if (opcionRival == 3) {
-
-                        danioBase = rivalPokemon.getAtaque2().getDanio(); // Guarda el daño inicial del ataque.
-
-                        calcularDanio(rivalPokemon.getAtaque3(), miPokemon); // Se llama al método para calcular el daño del ataque 3.
-                        miPokemon.setVida( miPokemon.getVida() - rivalPokemon.getAtaque3().getDanio()); // Se calcula el daño recibido en la vida del jugador.
-                        System.out.println("\n" + rivalPokemon.getNombre() + " enemigo usó " + rivalPokemon.getAtaque3().getNombre() + " causando " + rivalPokemon.getAtaque3().getDanio() + " puntos de daño.");
-
-                        rivalPokemon.getAtaque3().setDanio(danioBase); // Recupera el daño inicial del ataque.
+                    if (accionRival.esAtaque) {
+                        Ataque ataqueEscogido = getAtaque(rivalPokemon, accionRival.indiceAtaque);
+                        danioBase = ataqueEscogido.getDanio(); // Guarda el daño inicial del ataque.
+                        calcularDanio(ataqueEscogido, miPokemon); // Llamada al método para calcular el daño del ataque 1.
+                        miPokemon.setVida(miPokemon.getVida() - ataqueEscogido.getDanio()); // Se calcula el daño recibido en la vida del rival.
+                        System.out.println("\n" + rivalPokemon.getNombre() + " usó " + ataqueEscogido.getNombre() + " causando " + ataqueEscogido.getDanio() + " puntos de daño.");
+                        ataqueEscogido.setDanio(danioBase); // Recupera el daño inicial del ataque.
                     }
-
-                    if (miPokemon.getNombre().equals("BULBASAUR")) {
-
-                        System.out.println(" ----------------------\n"
-                                + "|                      |\n"
-                                + "| ((|))        (_o)  $ |\n"
-                                + "| ( { o_}  VS  `(`))/  |\n"
-                                + "|  u uu	         u u   |\n"
-                                + " ----------------------\n"
-                                + "  PS: " + miPokemon.getVida() + "       PS: " + rivalPokemon.getVida() + "\n"
-                                + " ----------------------");
-
-                    } else if (miPokemon.getNombre().equals("SQUIRTLE")) {
-
-                        System.out.println(" ----------------------\n"
-                                + "|                      |\n"
-                                + "|   ( o_)        ((|)) |\n"
-                                + "| @(#|\\)\\  VS  {_o } ) |\n"
-                                + "|   u u          uu u  |\n"
-                                + " ----------------------\n"
-                                + "  PS: " + miPokemon.getVida() + "       PS: " + rivalPokemon.getVida() + "\n"
-                                + " ----------------------");
-
-                    } else if (miPokemon.getNombre().equals("CHARMANDER")) {
-
-                        System.out.println(" ----------------------\n"
-                                + "|                      |\n"
-                                + "| $  (o_)      (_o )   |\n"
-                                + "|  \\((´)´  VS  /(/|#)@ |\n"
-                                + "|   u u          u u   |\n"
-                                + " ----------------------\n"
-                                + "  PS: " + miPokemon.getVida() + "       PS: " + rivalPokemon.getVida() + "\n"
-                                + " ----------------------");
-                    }
-
+                    mostrarPanelCombate();
                     do {
-
                         System.out.println("\nCONTINUAR(S)");
-
                         continuar = lectura.next();
-
                         if (continuar.equalsIgnoreCase("S")) {
-
                             turnoJugador = true; // Continúa con el turno del jugador.
-
                         } else {
-
                             System.out.println("\nEscribe 'S' para pasar al siguiente turno.");
                         }
-
                     } while (!continuar.equalsIgnoreCase("S"));
-
                 } while (retroceder);
             }
-
         } while (miPokemon.getVida() > 0 && rivalPokemon.getVida() > 0); // El combate continuará hasta que uno de los dos Pokémon llegue a 0 de vida.
 
         // MENSAJES DE VICTORIA Y DERROTA:
@@ -403,13 +176,117 @@ public class Combate {
         }
     }
 
+    private void mostrarPanelCombate() {
+        System.out.println(" ----------------------\n"
+                + miPokemon.getAsciiArt()
+                + "Vs"
+                + rivalPokemon.getAsciiArt()
+                + " ----------------------\n"
+                + "  PS: " + miPokemon.getVida() + "       PS: " + rivalPokemon.getVida() + "\n"
+                + " ----------------------");
+    }
+
+    private void mostrarDatosPokemon(Pokemon pokemon) {
+        System.out.println("\n ----------------------");
+        System.out.println(pokemon.getNombre().toUpperCase());
+        System.out.println(pokemon.getAsciiArt());
+        System.out.println(" ----------------------");
+        // Pokemon
+        System.out.println("Tipo: " + pokemon.getTipo());
+        System.out.println("PS: " + pokemon.getVida());
+        System.out.println("Velocidad: " + pokemon.getVelocidad());
+
+        // Ataques
+        mostrarDatosAtaque(pokemon.getAtaque1());
+        mostrarDatosAtaque(pokemon.getAtaque2());
+        mostrarDatosAtaque(pokemon.getAtaque3());
+    }
+
+    private void mostrarDatosAtaque(Ataque ataque) {
+        System.out.printf("%n%s (%s):%n", ataque.getNombre(), ataque.getTipo());
+        System.out.printf("-> Daño: %d%n", ataque.getDanio());
+        System.out.printf("-> Precisión: %d%%%n", ataque.getPrecision());
+        System.out.printf("-> Prob. crítica: %d%%%n", ataque.getCritica());
+        if (ataque.getRetroceso() > 0) {
+            System.out.printf("-> Prob. retroceso: %d%%%n", ataque.getRetroceso());
+        }
+    }
+
+    private Ataque getAtaque(Pokemon miPokemon, int indiceAtaque) {
+        if (indiceAtaque == 1) {
+            return miPokemon.getAtaque1();
+        } else if (indiceAtaque == 2) {
+            return miPokemon.getAtaque2();
+        } else if (indiceAtaque == 3) {
+            return miPokemon.getAtaque3();
+        }
+        throw new IllegalArgumentException("Indice no valido");
+    }
+
+    private Accion getAccionTurno(Scanner lectura) {
+        int accionInput;
+        do {
+            System.out.println("\n**************** TU TURNO: ****************");
+            System.out.println("\n¿Qué debería hacer " + miPokemon.getNombre() + "?");
+            System.out.println("1. " + miPokemon.getAtaque1().getNombre());
+            System.out.println("2. " + miPokemon.getAtaque2().getNombre());
+            System.out.println("3. " + miPokemon.getAtaque3().getNombre());
+            System.out.println("4. -> Ver datos del Pokémon");
+            System.out.println("5. -> Mochila");
+            accionInput = lectura.nextInt();
+
+            if (accionInput < 1 || accionInput > 5) {
+                System.out.println("\n¡Debes introducir un número del 1 al 5 para seleccionar una opción!");
+            }
+        } while (accionInput < 1 || accionInput > 5); // Mientras no se seleccione alguna de esas opciones numéricas, se repetirá el menú.
+        Accion accion = getAccionByIndex(accionInput);
+        if (accion != null) return accion;
+        throw new IllegalArgumentException("Error leyendo la accion");
+    }
+
+    private static Accion getAccionByIndex(int index) {
+        switch (index) {
+            case 1:
+                return Accion.ATAQUE1;
+            case 2:
+                return Accion.ATAQUE2;
+            case 3:
+                return Accion.ATAQUE3;
+            case 4:
+                return Accion.VER_DATOS;
+            case 5:
+                return Accion.MOCHILA;
+        }
+        return null;
+    }
+
+    private enum Accion {
+        ATAQUE1(true, 1),
+        ATAQUE2(true, 2),
+        ATAQUE3(true, 3),
+        VER_DATOS(),
+        MOCHILA();
+        final boolean esAtaque;
+        final int indiceAtaque;
+
+        Accion(Boolean esAtaque, int indiceAtaque) {
+            this.esAtaque = esAtaque;
+            this.indiceAtaque = indiceAtaque;
+        }
+
+        Accion() {
+            this.esAtaque = false;
+            this.indiceAtaque = -1;
+        }
+    }
+
     // MÉTODO PARA CALCULAR LOS DAÑOS BAJO MODIFICADORES:
     public void calcularDanio(Ataque ataque, Pokemon rival) {
 
         // MODIFICADORES TIPO AGUA:
         if (ataque.getNombreTipo().equals("Agua") && (rival.getTipo().equals(Pokemon.TipoPokemon.AGUA) || rival.getTipo().equals(Pokemon.TipoPokemon.PLANTA))) {
             // AGUA VS AGUA O PLANTA = /2
-            ataque.setDanio(ataque.getDanio()/2);
+            ataque.setDanio(ataque.getDanio() / 2);
             System.out.println("\nNo es muy eficaz...");
         } else if (ataque.getNombreTipo().equals("Agua") && (rival.getTipo().equals(Pokemon.TipoPokemon.FUEGO))) {
             // AGUA VS FUEGO = *2
